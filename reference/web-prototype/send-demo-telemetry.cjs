@@ -1,0 +1,3 @@
+'use strict';
+const {telemetryFor}=require('./shared/incident-core.cjs');
+(async()=>{const streamId='demo_'+Date.now();for(const sample of telemetryFor('highway')){const response=await fetch('http://localhost:8787/api/telemetry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({streamId,samples:[sample]})});if(!response.ok)throw Error('Local server rejected telemetry');const result=await response.json();if(result.events.length)console.log('예시 차량 신호의 사고 후보를 전송했습니다. 실제 사고 입력이 아닙니다.');await new Promise(r=>setTimeout(r,100));}})().catch(e=>{console.error('서버 연결을 확인하세요:',e.message);process.exitCode=1;});

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>멈춘 다음 시연 영상</title>
+<style>
+@font-face{font-family:'Pretendard';src:url('assets/PretendardVariable.woff2') format('woff2');font-weight:45 920;}
+/* 숫자는 본고딕(Noto Sans KR) */
+@font-face{font-family:'NumKR';src:url('assets/NotoSansKR-VF.ttf') format('truetype');font-weight:100 900;unicode-range:U+0030-0039,U+002E,U+0025,U+007E;}
+:root{--yel:#FFD43B;--ink:#eef2ff;--mute:#a9b8e0;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#060c24;overflow:hidden;width:100%;height:100%}
+body{font-family:'NumKR','Pretendard',sans-serif;color:#fff;-webkit-font-smoothing:antialiased;word-break:keep-all}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;transform-origin:0 0;
+  background:radial-gradient(1300px 900px at 30% 40%,#24409a 0%,#1a3184 35%,#122466 65%,#0b1846 100%)}
+#stage::before{content:'';position:absolute;inset:0;opacity:.16;background-image:radial-gradient(rgba(190,210,255,.7) 1px,transparent 1.5px);background-size:30px 30px}
+#stage::after{content:'';position:absolute;inset:0;background:radial-gradient(800px 500px at 88% 92%,rgba(70,120,255,.14),transparent 70%)}
+.abs{position:absolute}
+.scene{position:absolute;inset:0;opacity:0}
+#sec{left:62px;top:40px;display:flex;align-items:center;gap:14px;font-size:27px;font-weight:600;color:#e7ecfb;z-index:5}
+#sec b{color:var(--yel);font-weight:800;font-size:30px}
+#secbar{width:160px;height:3px;background:rgba(255,255,255,.22);margin-left:10px;position:relative}
+#secfill{position:absolute;left:0;top:0;height:3px;background:var(--yel)}
+/* 앱 화면 (에뮬레이터 녹화 2560×1600 좌표계) */
+.vp{position:absolute;left:60px;top:132px;width:1140px;height:712px;border-radius:20px;overflow:hidden;background:#fff;
+  box-shadow:0 0 0 10px #0a0f22,0 0 0 11px rgba(255,255,255,.12),0 40px 90px rgba(0,0,0,.5)}
+.layer{position:absolute;left:0;top:0;transform-origin:0 0}
+.layer img{display:block}
+.layer svg{position:absolute;left:0;top:0;overflow:visible}
+.disc{position:absolute;left:60px;top:868px;font-size:20px;color:#cdd7f4;display:flex;align-items:center;gap:10px;padding:7px 15px;border-radius:8px;background:rgba(5,12,40,.45)}
+.disc::before{content:'i';font:700 14px/20px 'Pretendard';width:20px;height:20px;border-radius:50%;text-align:center;background:var(--yel);color:#122466;flex:none}
+.col{position:absolute;left:1262px;top:118px;width:620px}
+.eyebrow{font-size:29px;font-weight:700;color:var(--yel);margin-bottom:12px}
+.title{font-size:58px;line-height:1.17;font-weight:850;letter-spacing:-1.5px;margin-bottom:36px}
+.bul{position:relative;padding-left:52px;margin-bottom:20px}
+.bul .t{font-size:32px;font-weight:600;letter-spacing:-.6px;color:#fff}
+.bul .t b{color:var(--yel);font-weight:800}
+.bul .s{font-size:22px;color:var(--mute);margin-top:3px}
+.bul svg{position:absolute;left:0;top:7px;width:30px;height:30px;overflow:visible}
+mark{background:linear-gradient(rgba(255,212,59,.42),rgba(255,212,59,.42)) no-repeat 0 92%/0% 42%;color:inherit;padding:0 2px}
+.stat{position:absolute;left:1480px;top:742px;border-left:5px solid var(--yel);padding-left:22px}
+.stat .v{font-size:84px;font-weight:850;letter-spacing:-2px;color:var(--yel);line-height:1;white-space:nowrap}
+.stat .v small{font-size:40px;color:#fff;font-weight:800;letter-spacing:-1px;margin-right:10px}
+.stat .k{font-size:23px;color:#c9d4f2;margin-top:10px}
+#sub{left:0;right:0;top:930px;display:flex;justify-content:center;z-index:6}
+#subbox{background:rgba(9,18,52,.94);border-bottom:3px solid var(--yel);border-radius:6px;padding:15px 42px 16px;
+  font-size:32px;line-height:1.45;font-weight:700;text-align:center;white-space:pre-line;max-width:1600px;opacity:0;letter-spacing:-.4px}
+#subbox.app{border-bottom-color:#7fb0ff;background:rgba(14,30,80,.96)}
+#subbox .chip{display:inline-block;font-size:21px;font-weight:800;color:#0e1d52;background:#9cc2ff;padding:3px 11px;border-radius:7px;vertical-align:4px;margin-right:14px}
+.card{position:absolute;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 0 0 8px #0a0f22,0 40px 90px rgba(0,0,0,.55)}
+.card img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.thumb{position:absolute;text-align:center}
+.thumb .lb{font-size:24px;color:#dfe6fa;margin-top:22px;font-weight:600}
+svg#arrows{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none;z-index:4}
+.voice{position:absolute;left:1262px;top:760px;z-index:5;display:flex;align-items:center;gap:12px;padding:10px 18px;border-radius:40px;
+  background:#0e1d52;border:2px solid #9cc2ff;font-size:22px;font-weight:800;color:#dce8ff;opacity:0;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.voice i{display:inline-flex;gap:4px;align-items:center;height:22px}
+.voice i span{width:5px;border-radius:3px;background:#9cc2ff}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="sec" class="abs"><b id="secn">01</b><span id="sect"></span><div id="secbar"><div id="secfill"></div></div></div>
+  <div id="scenes"></div>
+  <svg id="arrows"></svg>
+  <div id="sub" class="abs"><div id="subbox"></div></div>
+</div>
+<script src="timeline.js"></script>
+<script src="clips.js"></script>
+<script>
+'use strict';
+const TL=window.TL,FPS=30;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const P=(t,a,d=.6)=>eo(clamp((t-a)/d));
+const $=h=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstElementChild;};
+function rise(el,t,a,d=.7,dy=26){const k=P(t,a,d);el.style.opacity=k;el.style.transform=`translateY(${(1-k)*dy}px)`;return k;}
+function win(t,a,b,f=.35){return Math.min(P(t,a,f),1-P(t,b,f));}
+const VP={x:60,y:132,w:1140,h:712};
+const W=2560,H=1600;   // 에뮬레이터 화면 좌표계 (1440×900 프레임을 2560×1600 크기로 표시)
+const FULL={x:1280,y:800,w:2560};
+
+function rnd(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280;}}
+function roughOval(x1,y1,x2,y2,seed,pad=10){
+  const r=rnd(seed),cx=(x1+x2)/2,cy=(y1+y2)/2,rx=(x2-x1)/2+pad,ry=(y2-y1)/2+pad*.8;
+  const a0=-2.2+r()*.6,n=46,pts=[];
+  for(let i=0;i<=n;i++){const a=a0+(Math.PI*2+.45)*i/n;const j=1+(r()-.5)*.035+ .03*Math.sin(i/n*Math.PI*2);
+    pts.push([cx+Math.cos(a)*rx*j,cy+Math.sin(a)*ry*(j+(i/n)*.06)]);}
+  return 'M'+pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' L');
+}
+function ring(seed){return `<svg viewBox="-15 -15 30 30"><path d="${roughOval(-9,-9,9,9,seed,0)}" fill="none" stroke="#FFD43B" stroke-width="3.6" stroke-linecap="round"/></svg>`;}
+
+/* ---------- 녹화 클립 레이어 ---------- */
+// L = {clip, sync:[장면시각, 클립시각], rate, hold(최대 클립시각), show:[a,b], keys:[{t,x,y,w,m}], hls:[{r:[x1,y1,x2,y2],t0,t1,arrow,pad}]}
+function frameSrc(L,t){
+  const n=window.CLIPLEN[L.clip];let ct=L.sync[1]+(t-L.sync[0])*(L.rate||1);
+  if(L.hold!=null)ct=Math.min(ct,L.hold);
+  const f=clamp(Math.round(ct*FPS)+1,1,n);
+  return `clips/${L.clip}/${String(f).padStart(5,'0')}.jpg`;
+}
+function makeVP(sc,layers){
+  const vp=$(`<div class="vp"></div>`);sc.el.appendChild(vp);
+  layers.forEach((L,li)=>{L.W=W;L.H=H;
+    L.el=$(`<div class="layer" style="width:${W}px;height:${H}px"><img style="width:${W}px;height:${H}px"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"></svg></div>`);
+    L.img=L.el.querySelector('img');vp.appendChild(L.el);const svg=L.el.querySelector('svg');
+    L.hls=(L.hls||[]).map((b,i)=>{const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d',roughOval(...b.r,li*17+i*7+sc.n*31,b.pad??16));p.setAttribute('fill','none');p.setAttribute('stroke','#FFD43B');
+      p.setAttribute('stroke-linecap','round');p.setAttribute('pathLength','1');p.setAttribute('stroke-dasharray','1');svg.appendChild(p);b.el=p;return b;});
+    if(!L.keys)L.keys=[{t:0,...FULL}];
+  });
+  sc.vp=vp;sc.layers=layers;
+}
+function camAt(L,t){
+  const k=L.keys;let a=k[0],b=k[0],m=0;
+  for(let i=1;i<k.length;i++){const kk=k[i],dur=kk.m||1.4;
+    if(t>=kk.t){a=b=kk;m=0;continue}
+    if(t>kk.t-dur){a=k[i-1];b=kk;m=eio((t-(kk.t-dur))/dur);}
+    break;}
+  let w=Math.exp(Math.log(a.w)+(Math.log(b.w)-Math.log(a.w))*m),x=a.x+(b.x-a.x)*m,y=a.y+(b.y-a.y)*m;
+  w=Math.min(w,L.W);const h=w*VP.h/VP.w;
+  x=clamp(x,w/2,L.W-w/2);y=h>=L.H?L.H/2:clamp(y,h/2,L.H-h/2);
+  return {x,y,s:VP.w/w};
+}
+const pending=[];
+function drawVP(sc,t){
+  for(const L of sc.layers){
+    const op=L.show?win(t,L.show[0],L.show[1],.45):1;L.el.style.opacity=op;L.el.style.display=op>0?'block':'none';
+    if(op<=0)continue;
+    const src=frameSrc(L,t);if(L.cur!==src){L.cur=src;L.img.src=src;pending.push(L.img);}
+    const c=camAt(L,t);L.cam=c;
+    L.el.style.transform=`translate(${VP.w/2-c.x*c.s}px,${VP.h/2-c.y*c.s}px) scale(${c.s})`;
+    for(const b of L.hls){const o=win(t,b.t0,b.t1??999,.3);b.el.style.opacity=o;
+      b.el.setAttribute('stroke-width',(5/c.s).toFixed(2));b.el.setAttribute('stroke-dashoffset',(1-P(t,b.t0,.75)).toFixed(3));}
+  }
+}
+function toStage(L,ix,iy){const c=L.cam;return [VP.x+VP.w/2+(ix-c.x)*c.s,VP.y+VP.h/2+(iy-c.y)*c.s];}
+function makeCol(sc,o){
+  const col=$(`<div class="col"></div>`);sc.el.appendChild(col);
+  sc.eb=$(`<div class="eyebrow">${o.eyebrow}</div>`);col.appendChild(sc.eb);
+  sc.ti=$(`<div class="title">${o.title.replace(/\n/g,'<br>')}</div>`);col.appendChild(sc.ti);
+  if(o.size)sc.ti.style.fontSize=o.size+'px';
+  sc.buls=(o.bullets||[]).map((b,i)=>{b.el=$(`<div class="bul">${ring(sc.n*13+i)}<div class="t">${b.text}</div>${b.sub?`<div class="s">${b.sub}</div>`:''}</div>`);
+    col.appendChild(b.el);b.marks=[...b.el.querySelectorAll('mark')];return b;});
+  if(o.stat){sc.stat=$(`<div class="stat"><div class="v">${o.stat.v}</div><div class="k">${o.stat.k}</div></div>`);sc.stat.t=o.stat.t;if(o.stat.left)sc.stat.style.left=o.stat.left+'px';sc.el.appendChild(sc.stat);}
+  if(o.disc){sc.disc=$(`<div class="disc">${o.disc}</div>`);sc.el.appendChild(sc.disc);}
+  if(sc.app){sc.voice=$(`<div class="voice"><i><span></span><span></span><span></span><span></span><span></span></i>앱 음성 안내 · 하윤 녹음</div>`);sc.el.appendChild(sc.voice);sc.bars=[...sc.voice.querySelectorAll('span')];}
+}
+function drawCol(sc,t){
+  rise(sc.eb,t,.2);rise(sc.ti,t,.35);
+  for(const b of sc.buls){rise(b.el,t,b.t,.6,18);const k=P(t,b.t+.45,.8);b.marks.forEach(m=>m.style.backgroundSize=`${k*100}% 42%`);}
+  if(sc.stat){const k=P(t,sc.stat.t,.8);sc.stat.style.opacity=k;sc.stat.style.transform=`translateX(${(1-k)*30}px)`;}
+  if(sc.disc)rise(sc.disc,t,.8,.6,10);
+  if(sc.vp){const k=P(t,0,.9);sc.vp.style.opacity=k;sc.vp.style.transform=`translateX(${(1-k)*-40}px)`;}
+  if(sc.voice){const a=sc.app,o=win(t,a.start-.25,a.end+.2,.3);sc.voice.style.opacity=o;sc.voice.style.transform=`translateY(${(1-o)*-12}px)`;
+    sc.bars.forEach((s,i)=>{s.style.height=(6+14*Math.abs(Math.sin(t*9+i*1.3)))+'px'});}
+}
+function arrowPath(sc,t){
+  let out='';const st=document.getElementById('stage').getBoundingClientRect(),sk=st.width/1920;
+  for(const L of sc.layers||[])for(const b of L.hls){
+    if(b.arrow==null)continue;
+    const o=win(t,b.t0+.2,b.t1??999)*(L.show?win(t,L.show[0],L.show[1],.45):1);if(o<=.01)continue;
+    const bul=sc.buls[b.arrow];if(!bul||+bul.el.style.opacity<.5)continue;
+    const r=bul.el.querySelector('svg').getBoundingClientRect();
+    const x1=(r.left-st.left)/sk-6,y1=(r.top-st.top)/sk+r.height/sk/2;
+    let [x2,y2]=toStage(L,b.r[2]+(b.pad??16),(b.r[1]+b.r[3])/2);x2+=12;
+    x2=Math.min(x2,VP.x+VP.w+4);y2=clamp(y2,VP.y+20,VP.y+VP.h-20);
+    const cx=(x1+x2)/2+30,cy=Math.max(y1,y2)+70,d=P(t,b.t0+.2,.9),ang=Math.atan2(y2-cy,x2-cx);
+    const ah=`M${x2},${y2} L${x2-20*Math.cos(ang-.5)},${y2-20*Math.sin(ang-.5)} M${x2},${y2} L${x2-20*Math.cos(ang+.5)},${y2-20*Math.sin(ang+.5)}`;
+    out+=`<path d="M${x1},${y1} Q${cx},${cy} ${x2},${y2}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${1-d}" fill="none" stroke="#FFD43B" stroke-width="3.6" stroke-linecap="round" opacity="${o}"/>`;
+    if(d>.97)out+=`<path d="${ah}" fill="none" stroke="#FFD43B" stroke-width="3.6" stroke-linecap="round" opacity="${o}"/>`;
+  }
+  return out;
+}
+
+/* 데모 화면 공통 좌표 (2560×1600) */
+const RG={scene:[252,579,1373,1046],tele:[252,1069,646,1107],chip2:[480,1126,694,1197],chip3:[708,1126,920,1197],chip4:[936,1126,1130,1197],chip5:[1143,1126,1306,1197],
+  guide:[1478,378,2490,589],cue:[1478,1350,2490,1504],immobile:[1478,851,1811,960],head:[252,384,1376,448]};
+
+/* ---------- 장면 ---------- */
+const SEC={2:['01','사고 후보 감지'],3:['02','장면 확보 · 분석'],4:['03','상황별 안내'],5:['04','판단 보류'],6:['05','실제 입력'],7:['06','구조 · 기록']};
+const BUILD={
+1(sc,L,E){
+  const e=sc.el;
+  sc.cards=[
+    {el:$(`<div class="card" style="left:1020px;top:170px;width:760px;height:475px"><img src="assets/tablet_home.jpg"></div>`),r:-3,dx:-10},
+    {el:$(`<div class="card" style="left:1560px;top:330px;width:270px;height:600px;border-radius:30px"><img src="assets/phone_home.png"></div>`),r:5,dx:12,late:true}];
+  sc.cards.forEach(c=>e.appendChild(c.el));
+  sc.eb=$(`<div class="abs" style="left:126px;top:250px;font-size:31px;font-weight:600;color:#b9c8f0">블랙박스 AI 사고 안내 · 안드로이드 앱</div>`);
+  sc.big=$(`<div class="abs" style="left:118px;top:300px;font-size:150px;font-weight:900;letter-spacing:-5px;line-height:1.06">멈춘 다음</div>`);
+  sc.ul=$(`<div class="abs" style="left:122px;top:480px;height:9px;width:640px;background:var(--yel);border-radius:5px;transform-origin:0 0"></div>`);
+  sc.tag=$(`<div class="abs" style="left:126px;top:518px;font-size:36px;font-weight:700;color:var(--yel)">감지 → 영상 확보 → 분석 → 음성 안내 → 기록</div>`);
+  sc.goal=$(`<div class="abs" style="left:126px;top:620px;width:860px"><div style="font-size:40px;font-weight:800;letter-spacing:-1px"><span style="display:inline-block;font-size:22px;font-weight:800;color:#122466;background:var(--yel);padding:4px 12px;border-radius:7px;vertical-align:middle;margin-right:16px">구현</span>Kotlin · Jetpack Compose · CameraX</div>
+    <div style="font-size:21px;color:#b9c8f0;margin-top:12px">휴대폰·태블릿 실행 · 서버 없이 제품 시연 · 실제 카메라·영상 파일·분석 서버 연결</div></div>`);
+  [sc.eb,sc.big,sc.ul,sc.tag,sc.goal].forEach(x=>e.appendChild(x));
+  sc.draw=t=>{
+    sc.cards.forEach((c,i)=>{const a=c.late?L(1)+.3:.15,k=P(t,a,1.1);c.el.style.opacity=k;
+      c.el.style.transform=`translate(${(1-k)*(c.late?60:120)+c.dx*t/20}px,${(1-k)*(c.late?60:30)}px) rotate(${c.r}deg) scale(${.95+.05*k})`;});
+    rise(sc.eb,t,.2);rise(sc.big,t,.35,.9,40);sc.ul.style.transform=`scaleX(${P(t,1.0,.9)})`;
+    rise(sc.tag,t,L(0)+.4);rise(sc.goal,t,L(1)+.6);
+  };
+},
+2(sc,L,E){
+  makeVP(sc,[
+    {clip:'t_highway',sync:[0,3.0],hold:6.5,keys:[{t:0,...FULL},{t:2.2,m:1.5,x:820,y:930,w:1500},{t:L(1)+.4,m:1.5,x:1880,y:700,w:1500}],
+      hls:[{r:RG.tele,t0:1.8,t1:L(1),arrow:0},{r:RG.chip2,t0:3.1,t1:L(1),arrow:2,pad:12},{r:RG.guide,t0:L(1)+.6,arrow:3}]}]);
+  makeCol(sc,{eyebrow:'사고 후보 감지',title:'조건이 함께 맞을 때만\n사고 후보로',size:54,
+    bullets:[{text:'충격 <b>2.5 g</b> 이상',t:L(0)+.6},{text:'2초 안에 <b>25 km/h</b> 이상 감속',t:L(0)+2.2},{text:'<b>5 km/h</b> 이하 정차',t:L(0)+3.6},
+      {text:'감지 즉시 <mark>공통 안내</mark> 시작',sub:'확정 사고 판정이 아닙니다',t:L(1)+.3}],
+    stat:{v:'<small>예시 충격</small>3.1 g',k:'시제품 시험 기준 · 인증된 감지 기준 아님',t:L(0)+1.6,left:1400},
+    disc:'합성 시연 장면 · 예시 차량 신호 · 에뮬레이터 실행 화면'});
+},
+3(sc,L,E){
+  const A=sc.app.start;
+  makeVP(sc,[
+    {clip:'t_highway',sync:[0,6.0],rate:.7,keys:[{t:0,...FULL},{t:L(0)+.3,m:1.4,x:820,y:1000,w:1500},{t:L(1)+.2,m:1.5,x:1960,y:1180,w:1400},{t:A-.3,m:1.3,x:1960,y:640,w:1400}],
+      hls:[{r:RG.chip3,t0:L(0)+.3,t1:L(0)+2.2,arrow:0,pad:12},{r:RG.chip4,t0:L(0)+2.2,t1:L(1),arrow:1,pad:12},{r:RG.cue,t0:L(1)+.6,t1:A-.2,arrow:2},{r:RG.guide,t0:A,arrow:3}]}]);
+  makeCol(sc,{eyebrow:'전후 장면 · 분석',title:'확인된 단서만\n안내에 반영',
+    bullets:[{text:'사고 전후 프레임 <b>6장</b> 확보',t:L(0)+.3},{text:'분석 서버로 요청 → 응답',t:L(0)+2.2},
+      {text:'형식 · 근거 프레임 검사',sub:'근거가 없으면 판단 보류',t:L(1)+.5},{text:'하윤 녹음 음성으로 안내',t:A}],
+    disc:'합성 시연 장면 · 예시 분석 응답(실제 모델 추론 아님) · 실제 입력과 같은 검사 코드'});
+},
+4(sc,L,E){
+  const A=sc.app.start;
+  makeVP(sc,[
+    {clip:'r_tunnel',sync:[0,6.6],show:[-1,L(1)],keys:[{t:0,...FULL},{t:1.6,m:1.4,x:820,y:820,w:1500},{t:3.4,m:1.3,x:1960,y:900,w:1400}],
+      hls:[{r:RG.scene,t0:1.2,t1:3.0,arrow:0},{r:RG.cue,t0:3.4,t1:L(1),arrow:0},{r:RG.guide,t0:3.0,t1:L(1),arrow:1}]},
+    {clip:'r_tunnel_immobile',sync:[L(1),2.0],show:[L(1),99],keys:[{t:0,x:1960,y:760,w:1400}],
+      hls:[{r:RG.immobile,t0:L(1)+1.7,t1:A,arrow:2,pad:12},{r:RG.guide,t0:L(1)+3.2,arrow:3}]}]);
+  makeCol(sc,{eyebrow:'상황별 안내',title:'이동이 어렵다면,\n구조 요청부터',
+    bullets:[{text:'연기 의심 단서 + 근거 프레임',t:1.2},{text:'안내 문장이 바뀜',sub:'대피 방향은 현장 표지로 확인',t:3.0},
+      {text:'<mark>이동 어려움</mark> 알림이 우선',t:L(1)+1.5},{text:'구조 요청을 먼저 안내',t:L(1)+3.2}],
+    disc:'합성 시연 장면 · 예시 분석 응답 · 부상·안전한 이동 가능 여부는 판단하지 않음'});
+},
+5(sc,L,E){
+  const B=L(1)-.2;
+  makeVP(sc,[
+    {clip:'r_lowlight',sync:[0,7.0],show:[-1,B],keys:[{t:0,...FULL},{t:2.4,m:1.3,x:1960,y:1160,w:1400}],
+      hls:[{r:RG.cue,t0:2.6,t1:B,arrow:0},{r:RG.guide,t0:3.8,t1:B,arrow:1}]},
+    {clip:'r_bump',sync:[B,3.0],show:[B,99],keys:[{t:0,...FULL},{t:B+1.0,m:1.2,x:820,y:900,w:1500},{t:B+3.0,m:1.2,x:820,y:620,w:1500}],
+      hls:[{r:RG.tele,t0:B+1.4,t1:B+3.2,arrow:2},{r:RG.head,t0:B+3.6,arrow:3}]}]);
+  makeCol(sc,{eyebrow:'판단 보류',title:'모르는 것은\n모른다고',
+    bullets:[{text:'어두운 영상 → <mark>판단 보류</mark>',t:1.6},{text:'"위험 없음"이라 말하지 않음',sub:'공통 안내 유지',t:3.8},
+      {text:'충격만 있는 과속방지턱',t:B+1.2},{text:'사고 안내로 바뀌지 않음',t:B+3.4}],
+    disc:'합성 시연 장면 · 예시 차량 신호 · 실차 사고 감지 성능은 검증 전'});
+},
+6(sc,L,E){
+  const C=4.0,D=8.4;
+  makeVP(sc,[
+    {clip:'r_camera',sync:[0,8.6],show:[-1,C],keys:[{t:0,x:820,y:820,w:1500}],
+      hls:[{r:[250,511,1371,1144],t0:1.0,t1:C,arrow:0}]},
+    {clip:'r_live',sync:[C,12.6],show:[C,D],keys:[{t:0,x:820,y:780,w:1500}],
+      hls:[{r:[250,568,1371,1006],t0:C+.7,t1:D,arrow:0}]},
+    {clip:'r_event',sync:[D,2.4],show:[D,99],keys:[{t:0,...FULL},{t:D+1.6,m:1.2,x:1280,y:800,w:2560},{t:D+3.6,m:1.4,x:1180,y:1180,w:2000}],
+      hls:[{r:[613,832,987,933],t0:D+.3,t1:D+2.6,arrow:2,pad:12},{r:[1475,373,2493,600],t0:D+1.0,t1:D+3.4,arrow:2},{r:[573,1325,907,1379],t0:D+4.3,arrow:3,pad:12}]}]);
+  makeCol(sc,{eyebrow:'실제 입력',title:'카메라·영상 파일과\n분석 서버 연결',size:54,
+    bullets:[{text:'휴대폰 카메라 · 블랙박스 영상',t:1.0},{text:'PC 분석 서버 → 비전 모델',t:4.6},
+      {text:'사고 이벤트 → 공통 안내 → 분석',t:D+.4},{text:'실패하면 <mark>예시로 대체하지 않음</mark>',t:L(1)}],
+    disc:'분석 응답은 시험용 고정 응답 서버(stub-vision) · 실제 비전 모델 추론 아님 · 에뮬레이터 가상 카메라'});
+},
+7(sc,L,E){
+  const C=L(1)-.1;
+  makeVP(sc,[
+    {clip:'r_components',sync:[0,2.6],show:[-1,C],keys:[{t:0,...FULL},{t:6.6,m:1.2,x:1280,y:1180,w:2300}],
+      hls:[{r:[212,1022,2508,1452],t0:6.4,t1:C,arrow:1,pad:10},{r:[243,1114,435,1375],t0:7.0,t1:C,pad:10}]},
+    {clip:'r_records',sync:[C,2.8],show:[C,99],keys:[{t:0,...FULL},{t:C+1.4,m:1.3,x:820,y:640,w:1500}],
+      hls:[{r:[253,448,760,485],t0:C+1.0,t1:C+2.6,arrow:2,pad:10},{r:[253,507,1173,541],t0:C+2.6,arrow:2,pad:10},{r:[253,733,1000,773],t0:C+3.6,arrow:3,pad:10}]}]);
+  makeCol(sc,{eyebrow:'교체형 구조 · 기록',title:'권한이 생기면\n바꿔 끼우는 연결부',size:54,
+    bullets:[{text:'입력·분석·안내를 인터페이스로',sub:'VideoSource · TelemetrySource · VisionClient',t:1.2},{text:'현대차 캠·충돌 신호·SOS',sub:'연결 안 됨 · 교체용 어댑터 자리',t:4.6},
+      {text:'기록: 출처 · <mark>미확인 항목</mark>',t:C+.6},{text:'영상 원본은 저장하지 않음',t:C+3.4}],
+    disc:'현대차 연동 미구현 · 실제 신고 기능 없음 · 기록 저장·삭제·내보내기는 사용자가 선택'});
+},
+8(sc,L,E){
+  const e=sc.el,endT=E(1)+.6;
+  sc.head=$(`<div class="abs" style="left:0;right:0;top:120px;text-align:center;font-size:80px;font-weight:900;letter-spacing:-2.5px;line-height:1.2">
+    판단하지 않는 것은 분명히,<br><span style="color:var(--yel)">확인한 사실</span>만으로 다음 행동을</div>`);
+  const T=[['assets/tablet_highway.png','고속도로 정차',368,230],['assets/tablet_tunnel.png','이동 어려움 우선',368,230],['assets/tablet_lowlight.png','판단 보류',368,230],['assets/phone_demo.png','휴대폰 세로 화면',104,230]];
+  let x=(1920-(368*3+104+3*60))/2;
+  sc.thumbs=T.map(([src,lb,w,h])=>{const el=$(`<div class="thumb" style="left:${x}px;top:470px;width:${w}px"><div class="card" style="position:relative;width:${w}px;height:${h}px"><img src="${src}"></div><div class="lb">${lb}</div></div>`);x+=w+60;e.appendChild(el);return el;});
+  sc.note=$(`<div class="abs" style="left:0;right:0;top:820px;text-align:center;font-size:21px;color:#b9c8f0">부상 정도 · 과실 · 안전한 이동 가능 여부 · 확정 대피 방향은 판단하지 않습니다 · 도움 요청 화면은 모의이며 실제 신고를 하지 않습니다</div>`);
+  sc.end=$(`<div class="abs" style="left:0;right:0;top:300px;text-align:center">
+    <div style="font-size:34px;font-weight:600;color:#b9c8f0;margin-bottom:6px">블랙박스 AI 사고 안내</div>
+    <div style="font-size:140px;font-weight:900;letter-spacing:-4px">멈춘 다음</div>
+    <div style="width:430px;height:8px;background:var(--yel);border-radius:4px;margin:24px auto 30px"></div>
+    <div style="font-size:38px;font-weight:700;color:var(--yel)">사고 직후의 첫 몇 분, 확인한 사실만으로</div>
+    <div style="font-size:21px;color:#a9b8e0;margin-top:64px">Android 에뮬레이터 실제 실행 화면 · 합성 시연 장면과 예시 응답 · 시험용 고정 응답 서버 · 실제 AI 모델 추론·실차·현대차 연동 검증 전</div></div>`);
+  [sc.head,sc.note,sc.end].forEach(x=>e.appendChild(x));
+  sc.draw=t=>{const out=1-P(t,endT,.8);
+    sc.head.style.opacity=P(t,.2,.8)*out;sc.head.style.transform=`translateY(${(1-P(t,.2,.8))*30}px)`;
+    sc.thumbs.forEach((th,i)=>{const k=P(t,.8+i*.2,.8);th.style.opacity=k*out;th.style.transform=`translateY(${(1-k)*40}px)`;});
+    sc.note.style.opacity=P(t,L(1)+.3,.8)*out;
+    const k=P(t,endT+.4,1.0);sc.end.style.opacity=k;sc.end.style.transform=`translateY(${(1-k)*20}px)`;};
+  sc.hideSub=endT;
+}};
+
+/* ---------- 조립 ---------- */
+const scenes=TL.scenes.map(T=>{
+  const sc={...T,el:$(`<section class="scene"></section>`),layers:[],buls:[]};
+  document.getElementById('scenes').appendChild(sc.el);
+  const L=i=>T.lines[i].start,E=i=>T.lines[i].end;
+  BUILD[T.n](sc,L,E);return sc;});
+const subbox=document.getElementById('subbox'),secEl=document.getElementById('sec');
+function render(t){
+  let arrows='',cur=null;pending.length=0;
+  for(const sc of scenes){
+    const lt=t-sc.start,end=sc.dur,first=sc.n===1,last=sc.n===scenes.length;
+    const op=Math.min(first?1:clamp((lt+.3)/.6),last?1:clamp((end+.3-lt)/.6));
+    sc.el.style.opacity=op;sc.el.style.display=op>0?'block':'none';
+    if(op<=0)continue;
+    if(lt>=0&&lt<end)cur=sc;
+    const tt=Math.max(lt,0);
+    if(sc.draw)sc.draw(tt);else{drawVP(sc,tt);drawCol(sc,tt);}
+    if(sc.layers.length&&op>.5)arrows+=arrowPath(sc,tt);
+  }
+  document.getElementById('arrows').innerHTML=arrows;
+  cur=cur||scenes[scenes.length-1];
+  const lt=t-cur.start,s=SEC[cur.n];
+  secEl.style.opacity=s?P(lt,.1,.5):0;
+  if(s){document.getElementById('secn').textContent=s[0];document.getElementById('sect').textContent=s[1];
+    document.getElementById('secfill').style.width=(clamp(lt/cur.dur)*160)+'px';}
+  let html='',o=0,app=false;
+  if(!(cur.hideSub&&lt>cur.hideSub)){
+    const items=cur.lines.map(l=>({...l}));if(cur.app)items.push({...cur.app,app:true});
+    items.forEach((l,i)=>{const nx=i+1<items.length?items[i+1].start-.05:cur.dur-.2,b=Math.min(nx,l.end+.8);
+      if(lt>=l.start-.1&&lt<b){html=(l.app?'<span class="chip">앱 음성</span>':'')+l.sub.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>');app=!!l.app;
+        o=Math.min(clamp((lt-l.start+.1)/.15),clamp((b-lt)/.15));}});}
+  if(subbox.innerHTML!==html)subbox.innerHTML=html;
+  subbox.classList.toggle('app',app);
+  subbox.style.opacity=html?o:0;
+  return Promise.all(pending.map(i=>i.decode().catch(()=>{})));
+}
+window.R=render;
+window.READY=Promise.all([document.fonts.ready,...[...document.images].map(i=>i.decode().catch(()=>{}))]).then(()=>document.fonts.load('800 40px Pretendard')).then(()=>document.fonts.load('800 40px NumKR')).then(()=>true);
+const q=new URLSearchParams(location.search);
+function fit(){if(q.has('render'))return;const s=Math.min(innerWidth/1920,innerHeight/1080),st=document.getElementById('stage');
+  st.style.transform=`scale(${s})`;st.style.left=(innerWidth-1920*s)/2+'px';st.style.top=(innerHeight-1080*s)/2+'px';}
+addEventListener('resize',fit);fit();
+let T0=+(q.get('t')||0);render(T0);
+if(!q.has('render')){
+  const au=new Audio('../output/멈춘다음_시연영상_음성.m4a');let playing=false;
+  const loop=()=>{if(!playing)return;render(au.currentTime);requestAnimationFrame(loop)};
+  addEventListener('keydown',e=>{if(e.code==='Space'){playing=!playing;if(playing){au.currentTime=T0;au.play().catch(()=>{});loop()}else{au.pause();T0=au.currentTime}}
+    if(e.code==='ArrowRight'||e.code==='ArrowLeft'){T0=clamp((playing?au.currentTime:T0)+(e.code==='ArrowRight'?5:-5),0,TL.total);au.currentTime=T0;render(T0)}});
+}
+</script>
+</body>
+</html>

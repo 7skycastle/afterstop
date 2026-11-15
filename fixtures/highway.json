@@ -1,0 +1,204 @@
+{
+  "scenario": "highway",
+  "label": "고속도로 · 추돌 후 정차",
+  "inputSource": "synthetic_fixture",
+  "telemetry": [
+    {
+      "t": 0,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 100,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 200,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 300,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 400,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 500,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 600,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 700,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 800,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 900,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1000,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1100,
+      "speedKmh": 72,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1200,
+      "speedKmh": 55,
+      "linearG": 3.1,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1300,
+      "speedKmh": 38,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1400,
+      "speedKmh": 21,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1500,
+      "speedKmh": 4,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1600,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1700,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1800,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1900,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2000,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2100,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2200,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2300,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2400,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2500,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2600,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2700,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2800,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2900,
+      "speedKmh": 0,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    }
+  ],
+  "expectedIncident": true,
+  "analysisResponse": {
+    "scene": "road",
+    "visibility": "usable",
+    "smoke": "not_observed",
+    "fire": "unknown",
+    "evidence_frames": [
+      2,
+      3,
+      4
+    ],
+    "observations": [
+      "도로 위에 차량이 정차한 장면입니다.",
+      "선택한 프레임에서는 뚜렷한 연기 단서를 관찰하지 못했습니다."
+    ]
+  },
+  "analysisSource": "fixture_response_not_model_inference"
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "key": "highway",
+    "file": "highway.mp3",
+    "text": "차가 완전히 멈췄고 스스로 안전하게 이동할 수 있다면 차도 밖 안전한 곳으로 대피하세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "655fad1ef5722b724f4e030558fee23081e02d1a4249a4714b891223b3165273"
+  },
+  {
+    "key": "tunnel",
+    "file": "tunnel.mp3",
+    "text": "안전하게 이동할 수 있는지 살피고 대피 방향은 현장 표지로 확인하세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "dc9d3e3cbdb59770d3fcf455c68c0ce3ca50bb0bafed21c6cf6057ad8c9c3ca5"
+  },
+  {
+    "key": "unknown",
+    "file": "unknown.mp3",
+    "text": "차량이 멈췄는지와 주변에서 다가오는 위험이 있는지 살피세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "46b14608db1fd2381ad457875961a08bd7ac6823f09b89ac2e6c2cfe817c7172"
+  },
+  {
+    "key": "observed",
+    "file": "observed.mp3",
+    "text": "실제로 연기나 불꽃이 보이고 안전하게 이동할 수 있다면 차량에서 떨어진 안전한 곳으로 대피하세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "90bcb5b46a9597cb176e3552b0f8bcdc0ab78ef957295bf16bdac5b0ff18b844"
+  },
+  {
+    "key": "smoke",
+    "file": "smoke.mp3",
+    "text": "스스로 안전하게 이동할 수 있다면 차량에서 떨어진 안전한 곳으로 대피하세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "f1c6097024c512363a8ac54cf43656e23caf9cf9f2bfeab6ce26b4da26f768fc"
+  },
+  {
+    "key": "immobile",
+    "file": "immobile.mp3",
+    "text": "이동이 어렵다는 사실을 알리고 구조 요청을 우선하세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "c4e758ab4f6f705e564ccdba3b9871317efdfcece28c26c1c21c52523208b5e2"
+  },
+  {
+    "key": "combinedObserved",
+    "file": "combinedObserved.mp3",
+    "text": "움직이기 어렵다는 사실과 실제로 보이는 위험을 구조 요청 시 알려주세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "b8530bbfa968f6646a524e04b19f9ad61cb5ae59be3227774e8943a545e96066"
+  },
+  {
+    "key": "combined",
+    "file": "combined.mp3",
+    "text": "연기·불꽃이 보이고 움직이기 어렵다는 두 가지 상황을 구조 요청 시 함께 알려주세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "3e5d89cfe8c29ed8da8ac315fb546080ec72c8be55295ba851e8cd3c1150224c"
+  },
+  {
+    "key": "help",
+    "file": "help.mp3",
+    "text": "필요하다면 차량 SOS나 긴급전화로 도움을 요청하세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "d1ece4368322402af3df0129fd0e7881a6651adbb8fde23c5c9d803424ebf940"
+  },
+  {
+    "key": "facts",
+    "file": "facts.mp3",
+    "text": "알고 있는 도로명과 진행 방향, 눈앞의 상황을 알려주세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "8f33b61fe1da5e899fe693bd22eb07b63d35fe56d2919cc6f805f2d2c850d8ef"
+  },
+  {
+    "key": "factsUnknown",
+    "file": "factsUnknown.mp3",
+    "text": "현재 위치를 확인하지 못했다는 점과 눈앞의 상황을 알려주세요.",
+    "provider": "Fish Audio",
+    "voice": "하윤 Hayoon",
+    "sha256": "6b182db9313506b5e9cc69edf04b5fd76bb6ee3bac6bcfb72a3da37173065f5a"
+  }
+]

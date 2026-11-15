@@ -1,0 +1,21 @@
+const test=require('node:test'),assert=require('node:assert/strict'),http=require('node:http');
+const {createApp}=require('../server.cjs');const {telemetryFor}=require('../shared/incident-core.cjs');
+test('local API handles telemetry, fixture responses, model bridge and rejects invalid requests',async t=>{
+ const fixture={scene:'tunnel',visibility:'usable',smoke:'possible',fire:'unknown',evidence_frames:[0],observations:['흰색 흐림이 보입니다.']};
+ let modelCalls=0;const upstream=http.createServer(async(req,res)=>{let body='';for await(const c of req)body+=c;const parsed=JSON.parse(body);assert.equal(parsed.messages[0].images.length,1);modelCalls++;res.setHeader('Content-Type','application/json');res.end(JSON.stringify({message:{content:JSON.stringify(fixture)}}));});
+ await new Promise(r=>upstream.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>upstream.close(r)));
+ const app=createApp({port:0,model:'test-vision-fixture',ollamaURL:'http://127.0.0.1:'+upstream.address().port+'/api/chat'});await new Promise(r=>app.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>app.close(r)));
+ const base='http://127.0.0.1:'+app.address().port;
+ const call=(route,data,extra={})=>fetch(base+route,{method:data?'POST':'GET',headers:{'Content-Type':'application/json',...extra},...(data?{body:JSON.stringify(data)}:{})});
+ assert.equal((await(await call('/api/health')).json()).hardwareConnected,false);
+ const eventStream=await call('/api/events');const reader=eventStream.body.getReader();assert.match(new TextDecoder().decode((await reader.read()).value),/event: ready/);
+ const a=await(await call('/api/telemetry',{samples:telemetryFor('highway')})).json();assert.equal(a.events.length,1);assert.match(new TextDecoder().decode((await reader.read()).value),/synthetic_fixture/);await reader.cancel();
+ const b=await(await call('/api/telemetry',{samples:telemetryFor('bump')})).json();assert.equal(b.events.length,0);
+ const fixtureResponse=await(await call('/api/demo-analyze',{scenario:'tunnel'})).json();assert.equal(fixtureResponse.source,'fixture_response_not_model_inference');
+ assert.equal((await call('/api/demo-analyze',{scenario:'missing'})).status,400);
+ assert.equal((await call('/api/telemetry',{samples:[{t:0,speedKmh:-1,linearG:0}]})).status,400);
+ const live=await(await call('/api/analyze',{images:['/9j/AA==']})).json();assert.equal(live.source,'local_vision_model');assert.equal(live.analysis.smoke,'possible');assert.equal(modelCalls,1);
+ assert.equal((await call('/api/analyze',{images:['not-an-image']})).status,400);
+ assert.equal((await call('/api/health',null,{origin:'https://untrusted.example'})).status,403);
+ assert.equal((await call('/missing')).status,404);
+});

@@ -1,0 +1,23 @@
+# 작업 도구·빌드 산출물
+.omc/
+**/build/
+android/.gradle/
+android/.kotlin/
+android/local.properties
+*.jks
+*.keystore
+.env
+node_modules/
+.vercel/
+
+# 큰 미디어(다시 만들 수 있음) — 영상 편집 소스·녹화본·출력물
+video/src/clips/
+video/recordings/
+video/output/
+video/audio/
+dist/
+preview-site/downloads/
+preview-site/_check/
+
+# 제출용 개인 서류
+제출자료/

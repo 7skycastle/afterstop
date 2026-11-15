@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "scene": {
+      "type": "string",
+      "enum": [
+        "tunnel",
+        "road",
+        "unknown"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "usable",
+        "limited",
+        "unusable"
+      ]
+    },
+    "smoke": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "possible",
+        "not_observed",
+        "unknown"
+      ]
+    },
+    "fire": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "possible",
+        "not_observed",
+        "unknown"
+      ]
+    },
+    "evidence_frames": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "observations": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "maxLength": 160
+      }
+    }
+  },
+  "required": [
+    "scene",
+    "visibility",
+    "smoke",
+    "fire",
+    "evidence_frames",
+    "observations"
+  ]
+}

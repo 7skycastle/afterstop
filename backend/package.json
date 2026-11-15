@@ -1,0 +1,1 @@
+{"name":"afterstop-backend","version":"1.0.0","private":true,"description":"멈춘 다음 Android 앱용 분석 서버 (Node 내장 모듈만 사용)","engines":{"node":">=22"},"scripts":{"start":"node server.cjs","test":"node --test tests/*.test.cjs"}}

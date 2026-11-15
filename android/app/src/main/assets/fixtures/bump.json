@@ -1,0 +1,204 @@
+{
+  "scenario": "bump",
+  "label": "과속방지턱 · 사고 안내 없음",
+  "inputSource": "synthetic_fixture",
+  "telemetry": [
+    {
+      "t": 0,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 100,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 200,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 300,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 400,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 500,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 600,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 700,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 800,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 900,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1000,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1100,
+      "speedKmh": 36,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1200,
+      "speedKmh": 28,
+      "linearG": 3.1,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1300,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1400,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1500,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1600,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1700,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1800,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 1900,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2000,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2100,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2200,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2300,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2400,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2500,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2600,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2700,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2800,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    },
+    {
+      "t": 2900,
+      "speedKmh": 28,
+      "linearG": 0.04,
+      "source": "synthetic_fixture"
+    }
+  ],
+  "expectedIncident": false,
+  "analysisResponse": {
+    "scene": "road",
+    "visibility": "usable",
+    "smoke": "not_observed",
+    "fire": "unknown",
+    "evidence_frames": [
+      2,
+      3,
+      4
+    ],
+    "observations": [
+      "도로 위에 차량이 정차한 장면입니다.",
+      "선택한 프레임에서는 뚜렷한 연기 단서를 관찰하지 못했습니다."
+    ]
+  },
+  "analysisSource": "fixture_response_not_model_inference"
+}

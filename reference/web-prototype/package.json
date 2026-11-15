@@ -1,0 +1,1 @@
+{"name":"afterstop-product-prototype","version":"0.5.0","private":true,"description":"Dashcam incident guidance product demonstration and local adapters","engines":{"node":">=22"},"scripts":{"start":"node server.cjs","test":"node --test tests/*.test.cjs"}}
