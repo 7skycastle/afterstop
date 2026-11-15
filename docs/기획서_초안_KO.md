@@ -137,4 +137,4 @@ Android(Kotlin·Jetpack Compose) 시제품을 만들어 에뮬레이터에서 �
 - 시연 영상 (약 2분 11초, Android 에뮬레이터 화면 녹화. 시연 장면은 합성 장면이며, 실제 입력 장면의 분석 응답은 고정 응답 시험 서버 결과. 화면 문구 개편 전 녹화): https://afterstop-preview.vercel.app/media/demo.mp4
 - APK: https://afterstop-preview.vercel.app/downloads/afterstop-debug.apk (디버그 빌드, SHA-256 364257a36645d31b2c2daf8b4129c66eef57318660c2b9a3b062c96aa2088116)
 - 미리 보기 사이트: https://afterstop-preview.vercel.app (설치 없이 웹 체험판·화면·영상 확인)
-- 소스 저장소 (선택): [링크] · 최종 커밋: [커밋 번호]
+- 소스 저장소: https://github.com/7skycastle/afterstop · 최종 커밋: bca24bb22a960d8af2be29f28a0422bf09d18943 (release APK: apk/ 폴더)
